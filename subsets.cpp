@@ -27,13 +27,13 @@ void subsets(int *b,int b_size,int *c,int c_size,int *v)
 	}
 
 }
-//generating a subsequence
+//generating all subsequences
 void subsequence(int *a,int *b,int idx,int b_size,int n)
 {
-	int *c=new int[b_size];
-	int *v=new int[b_size];
+	int *c=new int[b_size];//temporary array for storing subsets 
+	int *v=new int[b_size];//flag array to indicate element is selected or not
 	memset(v,sizeof(v),0);
-	subsets(b,b_size,c,0,v);//function for generating a subsequence
+	subsets(b,b_size,c,0,v);//function for generating all subsets of a generated subsequence
 	delete[] c,v;
 	for(int i=idx;i<n;i++)
 	{
@@ -51,6 +51,6 @@ signed main()
 	for(int i=0;i<n;i++)
 		cin>>a[i];
 	b=new int[n];
-	subsets(a,b,0,0,n);
+	subsequence(a,b,0,0,n);
 	return 0;
 }
