@@ -8,7 +8,7 @@ void print(int *c,int c_size)
 	cout<<"\n";
 }
 //generating all subsets for a particular subsequence
-void perm(int *b,int b_size,int *c,int c_size,int *v)
+void subsets(int *b,int b_size,int *c,int c_size,int *v)
 {
 	if(c_size==b_size)
 	{
@@ -21,24 +21,24 @@ void perm(int *b,int b_size,int *c,int c_size,int *v)
 		{
 			c[c_size]=b[i];
 			v[i]=1;
-			perm(b,b_size,c,c_size+1,v);
+			subsets(b,b_size,c,c_size+1,v);
 			v[i]=0;//backtracking 2
 		}
 	}
 
 }
 //generating a subsequence
-void subsets(int *a,int *b,int idx,int b_size,int n)
+void subsequence(int *a,int *b,int idx,int b_size,int n)
 {
 	int *c=new int[b_size];
 	int *v=new int[b_size];
 	memset(v,sizeof(v),0);
-	perm(b,b_size,c,0,v);
+	subsets(b,b_size,c,0,v);//function for generating a subsequence
 	delete[] c,v;
 	for(int i=idx;i<n;i++)
 	{
 		b[b_size]=a[i];
-		subsets(a,b,i+1,b_size+1,n);//automatic backtracking 1
+		subsequence(a,b,i+1,b_size+1,n);//automatic backtracking 1
 	}
 }
 
